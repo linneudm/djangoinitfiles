@@ -1,0 +1,30 @@
+version: '3'
+networks:
+  nginx:
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_app
+    networks:
+      - nginx
+    ports:
+      - "80:8000"
+      #- "443:443"
+    volumes:
+      - ./src:/code
+      - ./config/nginx:/etc/nginx/conf.d
+      #- /root/certs-data/:/data/letsencrypt/
+      #- /apps/config/certs:/etc/certificates
+    depends_on:
+      - web
+
+  web:
+    build: .
+    container_name: django_app
+    command: python3 manage.py runserver 0.0.0.0:8000
+    networks:
+      - nginx
+    volumes:
+      - ./src:/code
+    ports:
+      - "8000:8000"
