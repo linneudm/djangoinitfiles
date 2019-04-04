@@ -13,6 +13,7 @@ Este repositório contém os arquivos essenciais para construção de um projeto
 4. Inicie o projeto Django dentro da pasta "src".
 
 5. Configure os arquivos estáticos no Settings. Ex.:
+
 `
 STATIC_URL = '/static/'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
